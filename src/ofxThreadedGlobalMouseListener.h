@@ -6,10 +6,10 @@ class ofxThreadedGlobalMouseListener : public ofThread {
 	public:
 #ifdef TARGET_WIN32
 		static LRESULT CALLBACK MouseHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
-			return GlobalMouseListenerThread::pThis->mouseHook(nCode, wParam, lParam);
+			return ofxThreadedGlobalMouseListener::pThis->mouseHook(nCode, wParam, lParam);
 		}
 
-		static GlobalMouseListenerThread *pThis;
+		static ofxThreadedGlobalMouseListener *pThis;
 
 		LRESULT CALLBACK mouseHook(int nCode, WPARAM wParam, LPARAM lParam);
 #endif
