@@ -44,6 +44,18 @@ void ofxThreadedGlobalMouseListener::threadedFunction() {
 
 	UnhookWindowsHookEx(prevMouseHook);
 #endif
+    
+#ifdef TARGET_OSX
+    while (isThreadRunning()) {
+        CGEventRef event = CGEventCreate(NULL);
+        CGPoint cursor = CGEventGetLocation(event);
+        lock();
+        mouseX = cursor.x;
+        mouseY = cursor.y;
+        unlock();
+        CFRelease(event);
+    }
+#endif
 }
 
 void ofxThreadedGlobalMouseListener::waitForThread(bool callStopThread, long milliseconds) {
