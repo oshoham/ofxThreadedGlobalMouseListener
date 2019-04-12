@@ -4,6 +4,7 @@ ofxThreadedGlobalMouseListener* ofxThreadedGlobalMouseListener::pThis = NULL;
 
 ofxThreadedGlobalMouseListener::ofxThreadedGlobalMouseListener() {
 	buttonPressed = false;
+	lock();
 #ifdef TARGET_WIN32
 	POINT pt;
 	if (GetCursorPos(&pt)) {
@@ -11,6 +12,13 @@ ofxThreadedGlobalMouseListener::ofxThreadedGlobalMouseListener() {
 		mouseY = pt.y;
 	}
 #endif
+#ifdef TARGET_OSX
+	CGEventRef event = CGEventCreate(NULL);
+	CGPoint cursor = CGEventGetLocation(event);
+	mouseX = cursor.x;
+	mouseY = cursor.y;
+#endif
+	unlock();
 	startThread();
 }
 
