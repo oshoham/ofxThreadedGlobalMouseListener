@@ -5,6 +5,8 @@
 class ofxThreadedGlobalMouseListener : public ofThread {
 	public:
         static ofxThreadedGlobalMouseListener *pThis;
+
+		ofxThreadedGlobalMouseListener();	
 		~ofxThreadedGlobalMouseListener();
 
 #ifdef TARGET_WIN32

@@ -2,6 +2,10 @@
 
 ofxThreadedGlobalMouseListener* ofxThreadedGlobalMouseListener::pThis = NULL;
 
+ofxThreadedGlobalMouseListener::ofxThreadedGlobalMouseListener() {
+	startThread();
+}
+
 ofxThreadedGlobalMouseListener::~ofxThreadedGlobalMouseListener() {
 	waitForThread();
 }
