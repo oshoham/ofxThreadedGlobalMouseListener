@@ -3,6 +3,7 @@
 ofxThreadedGlobalMouseListener* ofxThreadedGlobalMouseListener::pThis = NULL;
 
 ofxThreadedGlobalMouseListener::ofxThreadedGlobalMouseListener() {
+	buttonPressed = false;
 	startThread();
 }
 
