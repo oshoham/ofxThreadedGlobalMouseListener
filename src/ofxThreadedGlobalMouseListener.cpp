@@ -4,6 +4,13 @@ ofxThreadedGlobalMouseListener* ofxThreadedGlobalMouseListener::pThis = NULL;
 
 ofxThreadedGlobalMouseListener::ofxThreadedGlobalMouseListener() {
 	buttonPressed = false;
+#ifdef TARGET_WIN32
+	POINT pt;
+	if (GetCursorPos(&pt)) {
+		mouseX = pt.x;
+		mouseY = pt.y;
+	}
+#endif
 	startThread();
 }
 
